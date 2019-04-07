@@ -9,6 +9,9 @@ public class TaiSan {
     private String dacta;
     private KhachHang KH;
 
+    public TaiSan() {
+    }
+
     public TaiSan(int id, int giatritansan, String tentaisan, String loaitaisan, String mucdichsudung, String dacta, KhachHang KH) {
         this.id = id;
         this.giatritansan = giatritansan;
@@ -17,6 +20,14 @@ public class TaiSan {
         this.mucdichsudung = mucdichsudung;
         this.dacta = dacta;
         this.KH = KH;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setGiatritansan(int giatritansan) {
+        this.giatritansan = giatritansan;
     }
 
 

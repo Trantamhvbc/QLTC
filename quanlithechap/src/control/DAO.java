@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import lopthucthe.HoSoGiaoDichTheChap;
 import lopthucthe.KhachHang;
 import lopthucthe.NguoiSuDung;
+import lopthucthe.TaiSan;
 public class DAO {
     private  Connection conn;
     public DAO() {
@@ -36,6 +37,20 @@ public class DAO {
             ps.setString(1, s.getUser());
             ps.setString(2, s.getPass());
             ps.setString(3, s.getVaitro());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+        public boolean addkhachhang(KhachHang s){
+        String sql = "INSERT INTO tblkhachhang (cancuoc,ten,sdt,diachi)"+"VALUES (?,?,?,?)";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, s.getScmnd());
+            ps.setString(2, s.getName());
+            ps.setString(3, s.getSdt());
+            ps.setString(4, s.getDiachi());
+            return ps.executeUpdate() > 0;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -74,7 +89,7 @@ public KhachHang findKH(int k){
             KH.setId(rskh.getInt("ID"));
             KH.setScmnd(rskh.getString("cancuoc"));
             KH.setName(rskh.getString("ten"));
-            KH.setSdt(rskh.getString("std"));
+            KH.setSdt(rskh.getString("sdt"));
             KH.setDiachi(rskh.getString("diachi"));
             return KH;
         }
@@ -87,6 +102,63 @@ public KhachHang findKH(int k){
     }
    return KH ;
 }
+public ArrayList <TaiSan> getListTaiSan(int k){
+    String sKH = "SELECT * FROM tbltaisan where tblhosothechapID = ? ;";
+    ArrayList <TaiSan> Arr = new ArrayList();
+    try{
+        PreparedStatement ps = conn.prepareStatement(sKH);
+        ps.setString(1, "" + k);
+        //System.out.println(k);
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            TaiSan TS = new TaiSan();
+            TS.setId(rs.getInt("ID"));
+            TS.setTentaisan(rs.getString("tentaisan"));
+            TS.setGiatritansan(rs.getInt("giatritaisan"));
+            TS.setLoaitaisan(rs.getString("loaitaisan"));
+            TS.setMucdichsudung(rs.getString("mucdich"));
+            TS.setDacta(rs.getString("dacta"));
+            Arr.add(TS);
+        }
+        //hs.setKH(KH);
+        //arr.add(hs);
+        //System.out.println(hs.getNgaybatdau() + " "+ hs.getKH().getName());
+    } catch(Exception e){ 
+       // System.out.println(e);
+       // System.out.println(456789);
+    }
+    
+   return Arr ;
+   
+}
+public ArrayList <KhachHang> findKH(String cancuoc){
+    String sKH = "SELECT * FROM tblkhachhang where cancuoc = ?;";
+    ArrayList <KhachHang> Arr = new ArrayList();
+    try{
+        PreparedStatement pskh = conn.prepareStatement(sKH);
+        pskh.setString(1, cancuoc);
+        //System.out.println(k);
+        ResultSet rskh = pskh.executeQuery();
+        while(rskh.next()){
+            KhachHang KH = new KhachHang();
+            KH.setId(rskh.getInt("ID"));
+            KH.setScmnd(rskh.getString("cancuoc"));
+            KH.setName(rskh.getString("ten"));
+            KH.setSdt(rskh.getString("sdt"));
+            KH.setDiachi(rskh.getString("diachi"));
+            Arr.add(KH);
+        }
+        //hs.setKH(KH);
+        //arr.add(hs);
+        //System.out.println(hs.getNgaybatdau() + " "+ hs.getKH().getName());
+    } catch(Exception e){ 
+       // System.out.println(e);
+        System.out.println(456789);
+    }
+   return Arr ;
+}
+
     /**
      *
      * @param id
@@ -131,7 +203,7 @@ public KhachHang findKH(int k){
        DAO A = new DAO();
        ArrayList<HoSoGiaoDichTheChap> HS = A.getHSGDTC();
        for( HoSoGiaoDichTheChap i : HS){
-           System.out.println(i.getKH().getName());
+           System.out.println(i.getKH().getDiachi());
        }
     }
     
