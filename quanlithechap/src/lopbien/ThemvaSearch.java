@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import lopthucthe.KhachHang;
+import lopthucthe.NguoiSuDung;
+import lopthucthe.NhanVien;
+import lopthucthe.QuanLi;
 
 /**
  *
@@ -23,6 +26,12 @@ public class ThemvaSearch extends javax.swing.JFrame {
      */
     DefaultTableModel model;
     ArrayList <KhachHang> Arr;
+    NguoiSuDung ad;
+    public ThemvaSearch(NguoiSuDung a){
+        initComponents();
+        this.ad = a;
+        model  = (DefaultTableModel) TB.getModel();
+    }
     public ThemvaSearch() {
         initComponents();
         model  = (DefaultTableModel) TB.getModel();
@@ -57,6 +66,7 @@ public class ThemvaSearch extends javax.swing.JFrame {
         CB = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,8 +143,25 @@ public class ThemvaSearch extends javax.swing.JFrame {
         jScrollPane3.setViewportView(TB);
 
         jButton2.setText("Chon");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("RESET");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,10 +201,12 @@ public class ThemvaSearch extends javax.swing.JFrame {
                                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jButton3)))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
+                        .addGap(131, 131, 131)
                         .addComponent(CB, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton2)))
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton4)))
                 .addGap(0, 46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -195,16 +224,12 @@ public class ThemvaSearch extends javax.swing.JFrame {
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(51, 51, 51))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)))
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,13 +243,14 @@ public class ThemvaSearch extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel15)
-                            .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)))
+                            .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addGap(218, 218, 218))
         );
 
@@ -241,27 +267,35 @@ public class ThemvaSearch extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        
-        try{
-            String canc = cancuoc.getText();
+
+        String canc = cancuoc.getText();
+        if(canc != ""){
             System.out.println(canc);
             DAO dao = new DAO();
             Arr = dao.findKH(canc);
-            int j = 1;
-            for(KhachHang i : Arr){
-                model.addRow(new Object[]{j++,i.getName(),i.getScmnd(),i.getSdt(),i.getDiachi()});
+            if(Arr.size() > 0){
+                int j = 1;
+                for(KhachHang i : Arr){
+                    model.addRow(new Object[]{j++,i.getName(),i.getScmnd(),i.getSdt(),i.getDiachi()});
+                }
+                int n = Arr.size();
+                System.out.println(n);
+                for(j = 1; j <= n ; j++){
+                    CB.addItem(j);
+                }
             }
-            int n = Arr.size();
-            System.out.println(n);
-            for(j = 1; j <= n ; j++){
-                CB.addItem(j);
+            else{
+               Component frame = null;
+              JOptionPane.showMessageDialog(frame,"khong tim thay khach hang\nban vui long nhap lai can cuoc\n hoac chon chuc nang  them khach hang");
+            
             }
-            
-            
-        } catch(Exception e){
+
+       }
+       else{
             Component frame = null;
             JOptionPane.showMessageDialog(frame,"ban vui long nhap can cuoc ");
         }
+
         
         
         
@@ -292,6 +326,31 @@ public class ThemvaSearch extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        cancuoc.setText("");
+        ten.setText("") ;
+        sdt.setText("");
+        diachi.setText("");
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        GiaoDienNhanVien QL = new GiaoDienNhanVien();
+        QL.setVisible(true);
+        QL.addNhanVien(ad);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int i = CB.getSelectedIndex();
+        ThemHoSoGiaoDich HS = new ThemHoSoGiaoDich(Arr.get(i), ad);
+        HS.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,6 +395,7 @@ public class ThemvaSearch extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

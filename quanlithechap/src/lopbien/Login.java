@@ -8,6 +8,7 @@ package lopbien;
 import control.DAO;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.scene.input.KeyCode;
 import javax.swing.JOptionPane;
 import lopthucthe.NguoiSuDung;
@@ -172,6 +173,8 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+                Date t = new Date();
+                System.out.println(t.getTime());
             }
         });
     }

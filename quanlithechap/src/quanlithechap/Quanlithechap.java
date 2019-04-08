@@ -5,6 +5,7 @@
  */
 package quanlithechap;
 
+import java.util.Date;
 import lopbien.Login;
 
 /**
@@ -18,6 +19,7 @@ public class Quanlithechap {
      */
     public static void main(String[] args) {
         // TODO code application logic here'
+        Date t = new Date();
         Login a = new Login();
         a.setVisible(true);
     }

@@ -42,7 +42,68 @@ public class DAO {
         }
         return false;
     }
-        public boolean addkhachhang(KhachHang s){
+    public boolean addtaisan(TaiSan TS,int idhs, int idnsd,int idkh){
+        String sql = "insert into tbltaisan (tentaisan,giatritaisan,loaitaisan,mucdich,dacta,tblkhachhangID,tblnguoisudungID,tblhosothechapID) \n" +
+            "values(?,?,?,?,?,?,?,?);";
+        try{
+            PreparedStatement ps = conn.prepareCall(sql);
+            ps.setString(1, TS.getTentaisan());
+            ps.setString(2, TS.getGiatritansan()+"");
+            ps.setString(3, TS.getLoaitaisan());
+            ps.setString(4, TS.getMucdichsudung());
+            ps.setString(5, TS.getDacta());
+            ps.setString(6,idkh+"" );
+            ps.setString(7, idnsd+"");
+            ps.setString(8, idhs+"");
+            return ps.executeUpdate() > 0;
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+    public boolean addhosothechap(HoSoGiaoDichTheChap S,int idngs,String ngaybatdau, String ngayhethan){
+        String sql1 = "select max(ID) from tblhosothechap;";
+        String sql = "insert into tblhosothechap (sd,ed,tienconno,tiendagiaingan,thuctrang,laisuat,tblkhachhangID,tblnguoisudungID) \n" +
+"values(?,?,?,?,?,?,?,?);";
+        try{
+            PreparedStatement ps = conn.prepareCall(sql);
+            ps.setString(1, ngaybatdau);
+            ps.setString(2, ngayhethan);
+            ps.setInt(3, S.getTienconno());
+            ps.setInt(4, S.getTiendagiaingan());
+            ps.setString(5,S.getThuctrang());
+            ps.setFloat(6, S.getLaisuat());
+            ps.setInt(7, S.getKH().getId());
+            ps.setInt(8, idngs);
+            ps.executeUpdate();
+        }catch(Exception e){
+             e.printStackTrace();
+        }
+            
+        
+        int i = 0;
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql1);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                i = rs.getInt(1);
+                System.out.println(i);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       boolean oki = false;
+        for(TaiSan J : S.getArrtaisan()){
+            addtaisan(J, i, idngs, S.getKH().getId());
+            oki = true;
+            
+        }
+        
+        return false;
+ }
+       
+    
+    public boolean addkhachhang(KhachHang s){
         String sql = "INSERT INTO tblkhachhang (cancuoc,ten,sdt,diachi)"+"VALUES (?,?,?,?)";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -93,15 +154,12 @@ public KhachHang findKH(int k){
             KH.setDiachi(rskh.getString("diachi"));
             return KH;
         }
-        //hs.setKH(KH);
-        //arr.add(hs);
-        //System.out.println(hs.getNgaybatdau() + " "+ hs.getKH().getName());
+       
     } catch(Exception e){ 
-       // System.out.println(e);
-       // System.out.println(456789);
     }
    return KH ;
 }
+
 public ArrayList <TaiSan> getListTaiSan(int k){
     String sKH = "SELECT * FROM tbltaisan where tblhosothechapID = ? ;";
     ArrayList <TaiSan> Arr = new ArrayList();
@@ -201,10 +259,6 @@ public ArrayList <KhachHang> findKH(String cancuoc){
     
     public static void main(String[] args) {
        DAO A = new DAO();
-       ArrayList<HoSoGiaoDichTheChap> HS = A.getHSGDTC();
-       for( HoSoGiaoDichTheChap i : HS){
-           System.out.println(i.getKH().getDiachi());
-       }
     }
     
     

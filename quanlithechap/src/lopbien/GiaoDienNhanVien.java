@@ -104,10 +104,9 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ThemHoSoGiaoDich X = new ThemHoSoGiaoDich();
-        System.out.println(A.getUser()+" " + A.getVaitro());
+        ThemvaSearch TS = new ThemvaSearch(A);
         this.dispose();
-        X.setVisible(true);
+        TS.setVisible(true);
        // this.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
