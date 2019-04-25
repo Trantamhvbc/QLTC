@@ -97,7 +97,7 @@ public class XemChiTietHSTCFrm extends javax.swing.JFrame {
 
         jLabel8.setText("Tong Gia Tri");
 
-        jButton1.setText("Back");
+        jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -186,6 +186,7 @@ public class XemChiTietHSTCFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
         BaoCaoHSGDFrm BC = new BaoCaoHSGDFrm(0);
         BC.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

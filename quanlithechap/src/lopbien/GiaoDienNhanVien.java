@@ -52,6 +52,11 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         jLabel1.setText("Giao Dien Nhan Vien");
 
         jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Them Ho So Giao Dich");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +114,11 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         TS.setVisible(true);
        // this.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**

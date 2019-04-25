@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.input.KeyCode;
+import static javafx.scene.input.KeyCode.S;
 import javax.swing.JOptionPane;
 import lopthucthe.NguoiSuDung;
 
@@ -22,8 +23,11 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+
+    
     public Login() {
         initComponents();
+
     }
 
     /**
@@ -40,7 +44,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         tendangnhap = new javax.swing.JTextField();
-        pass = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,8 +77,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tendangnhap)
-                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
+                            .addComponent(tendangnhap, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(pass)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(jButton1)))
@@ -89,11 +93,11 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tendangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(56, 56, 56))
         );
@@ -107,7 +111,8 @@ public class Login extends javax.swing.JFrame {
         NguoiSuDung t = null;
         try{
             String username = tendangnhap.getText();
-            String pas = pass.getText();
+            String pas = new  String(pass.getPassword());
+            System.out.println(pas);
             DAO X = new DAO();
             ArrayList<NguoiSuDung> arr = X.getlistnguoisudung();
             int n = arr.size();
@@ -141,8 +146,7 @@ public class Login extends javax.swing.JFrame {
         }
          
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
+    /*
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -184,7 +188,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField pass;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JTextField tendangnhap;
     // End of variables declaration//GEN-END:variables
+
+    private String String(char[] password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
